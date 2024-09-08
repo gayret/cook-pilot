@@ -1,0 +1,335 @@
+[
+    {
+        "id": "1",
+        "name": "Patlıcan kebabı",
+        "category": "Fırın yemeği",
+        "cookingSupplies": [
+            "Patlıcan",
+            "Kıyma",
+            "Domates",
+            "Biber",
+            "Patates",
+        ],
+        "preparationTime": "1 saat"
+    },
+    {
+        "id": "2",
+        "name": "Havuç ekşileme, acem pilavı",
+        "category": "Soğuk yemek, tencere yemeği",
+        "cookingSupplies": [
+            "Havuç",
+            "Dana sote",
+            "Pirinç",
+            "Sıvı sumak ekşisi"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Kısır, ekşili turşu",
+        "category": "Soğuk yemek",
+        "cookingSupplies": [
+            "Bulgur",
+            "Patlıcan",
+            "Biber"
+        ]
+    },
+    {
+        "id": "4",
+        "name": "Sebzeli bulgur, cacık",
+        "category": "Tencere yemeği, soğuk yemek",
+        "cookingSupplies": [
+            "Bulgur",
+            "Domates",
+            "Biber",
+            "Salça",
+            "Yoğurt",
+            "Salatalık"
+        ]
+    },
+    {
+        "id": "5",
+        "name": "Et Haşlama, Bulgur Pilavı",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dana sote",
+            "Domates",
+            "Biber",
+            "Salça",
+        ]
+    },
+    {
+        "id": "6",
+        "name": "Domates soslu köfte",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dana sote",
+            "Domates",
+            "Biber",
+            "Salça",
+        ]
+    },
+    {
+        "id": "7",
+        "name": "Arpa şehriye çorbası",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Arpa şehriye",
+            "Kıyma",
+            "Soğan",
+            "Biber",
+            "Salça",
+            "Domates"
+        ]
+    },
+    {
+        "id": "8",
+        "name": "Et sote",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dana sote",
+            "Domates",
+            "Soğan",
+            "Biber",
+            "Salça"
+        ]
+    },
+    {
+        "id": "9",
+        "name": "Kıymalı Patates Sulusu, Bulgur Pilavı",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dana kıyma",
+            "Domates",
+            "Soğan",
+            "Biber",
+            "Salça",
+            "Bulgur"
+        ]
+    },
+    {
+        "id": "10",
+        "name": "Karnabahar, Pilav",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Karnabahar",
+            "Domates",
+            "Soğan",
+            "Biber",
+            "Salça",
+            "Bulgur"
+        ]
+    },
+    {
+        "id": "11",
+        "name": "Makarna, Salata",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Makarna",
+            "Domates",
+            "Soğan",
+            "Biber",
+            "Salça"
+        ]
+    },
+    {
+        "id": "12",
+        "name": "Kuzuların sessizliği, İnce salata",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Kuzu sote",
+            "Çeri domates",
+            "Arpacık soğan",
+            "Salatalık",
+            "Maydonoz"
+        ]
+    },
+    {
+        "id": "13",
+        "name": "Kabak kavurma",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Kabak",
+            "Domates",
+            "Biber"
+        ]
+    },
+    {
+        "id": "14",
+        "name": "Ekşili makarna",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Makarna",
+            "Domates",
+            "Biber",
+            "Salça",
+            "Sıvı sumak ekşisi"
+        ]
+    },
+    {
+        "id": "15",
+        "name": "Taze fasulye, pilav",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Taze fasulye",
+            "Domates",
+            "Biber",
+            "Salça",
+            "Bulgur",
+            "Şehriye"
+        ]
+    },
+    {
+        "id": "16",
+        "name": "Fırında sebzeli köfte",
+        "category": "Fırın yemeği",
+        "cookingSupplies": [
+            "Domates",
+            "Biber",
+            "Patates",
+            "Kıyma",
+            "Galeta unu",
+        ]
+    },
+    {
+        "id": "17",
+        "name": "Spaghetti, Salata",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Spaghetti",
+            "Biber",
+            "Domates",
+            "Marul"
+        ]
+    },
+    {
+        "id": "18",
+        "name": "Zeytinyağlı Biber Dolması, Yoğurt",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dolmalık biber",
+            "Domates",
+            "Soğan",
+            "Sıvı sumak ekşisi",
+        ]
+    },
+    {
+        "id": "19",
+        "name": "Paça, Bulgur Pilavı",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dana sote",
+            "Bulgur",
+            "Şehriye"
+        ]
+    },
+    {
+        "id": "20",
+        "name": "Kızartma",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Patates",
+            "Patlıcan",
+            "Biber",
+            "Kabak",
+            "Domates"
+        ]
+    },
+    {
+        "id": "21",
+        "name": "Sebzeli Kıymalı Makarna, Salata",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Makarna",
+            "Domates",
+            "Biber",
+            "Marul",
+            "Salatalık"
+        ]
+    },
+    {
+        "id": "22",
+        "name": "Ciğerimin köşesi",
+        "category": "Kavurma",
+        "cookingSupplies": [
+            "Dana ciğer",
+            "Domates",
+            "Biber",
+            "Soğan"
+        ]
+    },
+    {
+        "id": "23",
+        "name": "Mercimek Köftesi, Salata",
+        "category": "Soğuk yemek",
+        "cookingSupplies": [
+            "Mercimek",
+            "Domates",
+            "Biber",
+            "Soğan",
+            "Salatalık",
+            "Maydonoz"
+        ]
+    },
+    {
+        "id": "24",
+        "name": "Tavuk sote",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Tavuk sotelik",
+            "Domates",
+            "Biber",
+            "Soğan"
+        ]
+    },
+    {
+        "id": "25",
+        "name": "Etli nohut - Pirinç pilavı",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Dana sote",
+            "Nohut",
+            "Pirinç",
+            "Domates",
+            "Biber",
+            "Soğan"
+        ]
+    },
+    {
+        "id": "26",
+        "name": "Pırasa, Bulgur Pilavı",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Pırasa",
+            "Havuç",
+            "Kıyma",
+            "Bulgur",
+            "Domates",
+            "Biber",
+            "Soğan"
+        ]
+    },
+    {
+        "id": "27",
+        "name": "Fırında Sebzeli Tavuk Kanat",
+        "category": "Fırın yemeği",
+        "cookingSupplies": [
+            "Tavuk kanat",
+            "Domates",
+            "Biber",
+            "Soğan",
+            "Patates"
+        ]
+    },
+    {
+        "id": "28",
+        "name": "Kıymalı patates",
+        "category": "Tencere yemeği",
+        "cookingSupplies": [
+            "Kıyma",
+            "Patates",
+            "Domates",
+            "Biber",
+            "Soğan"
+        ]
+    },
+]
