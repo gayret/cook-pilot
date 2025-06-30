@@ -10,20 +10,21 @@ const commands = {
   readAll: 'tarifi baştan oku',
 }
 
+const LANGUAGE = 'tr-TR'
+
 export default function Home() {
   const [recipe, setRecipe] = useState('')
   const [steps, setSteps] = useState([])
   const [currentStep, setCurrentStep] = useState(0)
   const [isListening, setIsListening] = useState(false)
   const [isRecipeActive, setIsRecipeActive] = useState(false)
-  const [selectedLang, setSelectedLang] = useState('tr-TR')
 
   const recognitionRef = useRef(null)
   const stateRef = useRef()
-  stateRef.current = { steps, currentStep, selectedLang, isListening, isRecipeActive }
+  stateRef.current = { steps, currentStep, isListening, isRecipeActive }
 
   const startListening = useCallback(() => {
-    const { isListening, selectedLang, isRecipeActive } = stateRef.current
+    const { isListening, isRecipeActive } = stateRef.current
     if (
       !isRecipeActive ||
       isListening ||
@@ -34,7 +35,7 @@ export default function Home() {
       return
     }
     if (recognitionRef.current) {
-      recognitionRef.current.lang = selectedLang
+      recognitionRef.current.lang = LANGUAGE
       try {
         recognitionRef.current.start()
       } catch (error) {
@@ -53,7 +54,7 @@ export default function Home() {
       window.speechSynthesis.cancel()
 
       const utterance = new SpeechSynthesisUtterance(text)
-      utterance.lang = stateRef.current.selectedLang
+      utterance.lang = LANGUAGE
       utterance.onend = () => {
         if (stateRef.current.isRecipeActive) {
           startListening()
