@@ -4,10 +4,10 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './page.module.css'
 
 const commands = {
-  next: 'sonraki adım',
-  previous: 'önceki adım',
-  repeat: 'tekrar et',
-  readAll: 'tarifi baştan oku',
+  next: 'sonraki',
+  previous: 'önceki',
+  repeat: 'tekrarla',
+  readAll: 'tarifi baştan sona oku',
 }
 
 const LANGUAGE = 'tr-TR'
@@ -18,10 +18,26 @@ export default function Home() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isListening, setIsListening] = useState(false)
   const [isRecipeActive, setIsRecipeActive] = useState(false)
+  const [voices, setVoices] = useState([])
 
   const recognitionRef = useRef(null)
   const stateRef = useRef()
   stateRef.current = { steps, currentStep, isListening, isRecipeActive }
+
+  useEffect(() => {
+    const handleVoicesChanged = () => {
+      setVoices(window.speechSynthesis.getVoices())
+    }
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.addEventListener('voiceschanged', handleVoicesChanged)
+      handleVoicesChanged()
+    }
+    return () => {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged)
+      }
+    }
+  }, [])
 
   const startListening = useCallback(() => {
     const { isListening, isRecipeActive } = stateRef.current
@@ -55,6 +71,10 @@ export default function Home() {
 
       const utterance = new SpeechSynthesisUtterance(text)
       utterance.lang = LANGUAGE
+      const turkishVoice = voices.find((voice) => voice.lang === 'tr-TR')
+      if (turkishVoice) {
+        utterance.voice = turkishVoice
+      }
       utterance.onend = () => {
         if (stateRef.current.isRecipeActive) {
           startListening()
@@ -62,7 +82,7 @@ export default function Home() {
       }
       window.speechSynthesis.speak(utterance)
     },
-    [startListening]
+    [startListening, voices]
   )
 
   const handleVoiceCommand = useCallback(
@@ -173,6 +193,23 @@ export default function Home() {
     }
   }
 
+  const handleStepClick = (index) => {
+    setCurrentStep(index)
+    speakText(steps[index])
+  }
+
+  useEffect(() => {
+    if (isRecipeActive && steps.length > 0) {
+      const activeStepElement = document.getElementById(`step-${currentStep}`)
+      if (activeStepElement) {
+        activeStepElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+      }
+    }
+  }, [currentStep, isRecipeActive, steps])
+
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Cook Pilot</h1>
@@ -225,9 +262,10 @@ export default function Home() {
             <ul className={styles.stepsList}>
               {steps.map((step, index) => (
                 <li
+                  id={`step-${index}`}
                   key={index}
                   className={index === currentStep ? styles.activeStep : ''}
-                  onClick={() => setCurrentStep(index)}
+                  onClick={() => handleStepClick(index)}
                 >
                   {step}
                 </li>
