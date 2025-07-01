@@ -213,7 +213,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Cook Pilot</h1>
-      <p className={styles.description}>Sesli yemek pişirme asistanı</p>
+      <p className={styles.description}>Sesli pişirme asistanı</p>
 
       {steps.length === 0 && (
         <>
@@ -274,6 +274,16 @@ export default function Home() {
           </div>
         </>
       )}
+
+      <small className={styles.footer}>
+        <a href='https://github.com/gayret'>Safa Gayret</a> tarafından geliştirildi.
+        <br />
+        <br />
+        Uygulamanın hikayesi{' '}
+        <a href='https://safa.medium.com/sesli-pi%C5%9Firme-asistan%C4%B1-cook-pilot-78cee5e3dafb'>
+          burada.
+        </a>
+      </small>
     </main>
   )
 }

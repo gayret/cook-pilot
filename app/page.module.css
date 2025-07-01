@@ -172,3 +172,10 @@
     opacity: 1;
   }
 }
+
+.footer {
+  margin-top: 3rem;
+  font-size: 0.6rem;
+  color: #666;
+  text-align: center;
+}
