@@ -19,10 +19,35 @@ export default function Home() {
   const [isListening, setIsListening] = useState(false)
   const [isRecipeActive, setIsRecipeActive] = useState(false)
   const [voices, setVoices] = useState([])
+  const [wakeLock, setWakeLock] = useState(null)
 
   const recognitionRef = useRef(null)
   const stateRef = useRef()
   stateRef.current = { steps, currentStep, isListening, isRecipeActive }
+
+  const requestWakeLock = useCallback(async () => {
+    if ('wakeLock' in navigator) {
+      try {
+        const lock = await navigator.wakeLock.request('screen')
+        setWakeLock(lock)
+        lock.addEventListener('release', () => {
+          console.log('Wake Lock was released')
+          setWakeLock(null)
+        })
+        console.log('Wake Lock is active')
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`)
+      }
+    }
+  }, [])
+
+  const releaseWakeLock = useCallback(async () => {
+    if (wakeLock !== null) {
+      await wakeLock.release()
+      setWakeLock(null)
+      console.log('Wake Lock released')
+    }
+  }, [wakeLock])
 
   useEffect(() => {
     const handleVoicesChanged = () => {
@@ -34,10 +59,28 @@ export default function Home() {
     }
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged)
+        window.speechSynthesis.removeEventListener(
+          'voiceschanged',
+          handleVoicesChanged
+        )
       }
     }
   }, [])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (wakeLock !== null && document.visibilityState === 'visible') {
+        requestWakeLock()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      releaseWakeLock()
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [wakeLock, requestWakeLock, releaseWakeLock])
 
   const startListening = useCallback(() => {
     const { isListening, isRecipeActive } = stateRef.current
@@ -144,7 +187,8 @@ export default function Home() {
     }
     const recognition = recognitionRef.current
 
-    const onResult = (event) => handleVoiceCommand(event.results[0][0].transcript)
+    const onResult = (event) =>
+      handleVoiceCommand(event.results[0][0].transcript)
     const onEnd = () => {
       setIsListening(false)
       if (stateRef.current.isRecipeActive && !window.speechSynthesis.speaking) {
@@ -174,6 +218,7 @@ export default function Home() {
 
   const processRecipe = () => {
     if (recipe.trim() === '') return
+    requestWakeLock()
     const recipeSteps = recipe.split('\n').filter((line) => line.trim() !== '')
     setSteps(recipeSteps)
     setCurrentStep(0)
@@ -184,6 +229,7 @@ export default function Home() {
   }
 
   const stopRecipe = () => {
+    releaseWakeLock()
     setIsRecipeActive(false)
     setSteps([])
     setCurrentStep(0)
