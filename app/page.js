@@ -4,8 +4,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './page.module.css'
 
 const commands = {
-  next: 'sonraki',
-  previous: 'önceki',
+  next: 'sonra',
+  previous: 'önce',
   repeat: 'tekrarla',
   readAll: 'tarifi baştan sona oku',
 }
@@ -53,16 +53,17 @@ export default function Home() {
     const handleVoicesChanged = () => {
       setVoices(window.speechSynthesis.getVoices())
     }
+
     if (typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.addEventListener('voiceschanged', handleVoicesChanged)
-      handleVoicesChanged()
+      // In some browsers, the voices are not immediately available.
+      // The 'voiceschanged' event is fired when they are loaded.
+      window.speechSynthesis.onvoiceschanged = handleVoicesChanged
+      handleVoicesChanged() // For browsers that load voices instantly.
     }
+
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.removeEventListener(
-          'voiceschanged',
-          handleVoicesChanged
-        )
+        window.speechSynthesis.onvoiceschanged = null
       }
     }
   }, [])
@@ -187,8 +188,7 @@ export default function Home() {
     }
     const recognition = recognitionRef.current
 
-    const onResult = (event) =>
-      handleVoiceCommand(event.results[0][0].transcript)
+    const onResult = (event) => handleVoiceCommand(event.results[0][0].transcript)
     const onEnd = () => {
       setIsListening(false)
       if (stateRef.current.isRecipeActive && !window.speechSynthesis.speaking) {
