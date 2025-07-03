@@ -270,7 +270,7 @@ export default function Home() {
             value={recipe}
             onChange={(e) => setRecipe(e.target.value)}
             placeholder='Yemek tarifini buraya yapıştırın...'
-            rows='15'
+            rows='7'
             disabled={isRecipeActive}
           />
         </>
